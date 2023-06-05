@@ -71,12 +71,12 @@ public class GUINukeAntimatter extends GuiInfoContainer {
 		this.fontRendererObj.drawString(name, this.xSize / 2 - this.fontRendererObj.getStringWidth(name) / 2, 6, 4210752);
 		this.fontRendererObj.drawString(I18n.format("container.inventory"), 8, this.ySize - 96 + 2, 4210752);
 
-		if(bomb.hasBattery()) {
+		if(bomb.hasAmatCore()) {
 			String timer = bomb.getMinutes() + ":" + bomb.getSeconds();
-			double scale = 0.65;
-			GL11.glScaled(scale, scale, scale);
-			this.fontRendererObj.drawString(timer, (int) ((94 - this.fontRendererObj.getStringWidth(timer) / 2) * (1 / scale)), (int) (63 * (1 / scale)), 0xff0000);
 
+			double scale = 0.60;
+			GL11.glScaled(scale, scale, scale);
+			this.fontRendererObj.drawString(timer, (int) ((95 - this.fontRendererObj.getStringWidth(timer) / 2) * (1 / scale)), (int) (66 * (1 / scale)), 0xff0000);
 			GL11.glScaled(1 / scale, 1 / scale, 1 / scale);
 		}
 	}
@@ -86,16 +86,6 @@ public class GUINukeAntimatter extends GuiInfoContainer {
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		Minecraft.getMinecraft().getTextureManager().bindTexture(texture);
 		drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
-
-		if(bomb.hasEgg())
-			drawTexturedModalRect(guiLeft + 19, guiTop + 90, 176, 0, 30, 16);
-
-		int battery = bomb.getBattery();
-
-		if(battery == 1)
-			drawTexturedModalRect(guiLeft + 88, guiTop + 93, 176, 16, 18, 10);
-		else if(battery == 2)
-			drawTexturedModalRect(guiLeft + 88, guiTop + 93, 194, 16, 18, 10);
 
 		if(bomb.started)
 			drawTexturedModalRect(guiLeft + 80, guiTop + 85, 176, 26, 18, 18);
